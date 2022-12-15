@@ -5,7 +5,7 @@
 ```
 (dmojsite) $ python manage.py makemigrations
 ```
-如果不行，將 ./site/judge/migrations 內除了 __init__.py 的檔案刪除，並在執行一次 makemigrations
+如果不行，將 ./site/judge/migrations 內除了 __init__.py 的檔案全部刪除，並在執行一次 makemigrations
 
 再來遷移資料
 ```
