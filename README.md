@@ -27,9 +27,15 @@ $ apt update
 $ apt install mariadb-server libmysqlclient-dev
 ```
 再來是設定資料庫
+
+設定 mysql 資料庫，預設 root 密碼為空白，直接按下 Enter，資料庫帳號為 dmoj
+
+需修改 \<mariadb user password\> 為資料庫密碼
 ```
 $ sudo mysql
 mariadb> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 mariadb> GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY '<mariadb user password>';
 mariadb> exit
 ```
+### Installing prerequisites
+  
