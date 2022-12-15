@@ -195,4 +195,19 @@ $ service nginx restart
 ## 部屬 Judge server
 ### Site-side setup
  登入DMOJ的管理者，點選「Submmissions -> Judge」，新增 Judge 主機的 Name 與產生 authentication key
- ![GITHUB]( 圖片網址 "圖片名稱")
+ 
+ ![github](https://github.com/TsaiYuanW/DOMjudge/blob/main/judge.png)
+ 
+將 Judge 主機的 Name 與 key 填入 judge.yml 的 id 與 key ，如下範例。
+```
+id: pc2
+key: "uB3ehed:g+q#;LYa;-rN<z#Cxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+### Installing the prerequisites
+```
+$ apt install python3-dev python3-pip build-essential libseccomp-dev
+$ pip3 install dmoj
+```
+### Configuring the judge
+使用dmoj-autoconf產生runtime的設定，貼到/home/jang/site/judge.yml
+ 
