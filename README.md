@@ -211,7 +211,7 @@ $ pip3 install dmoj
 ### Configuring the judge
 使用 dmoj-autoconf 產生 runtime 的設定，貼到 /home/domjudge/site/judge.yml
 
-使用 problem_storage_root 設定測資資料夾，建立資料夾 /home/domjudge/site/problems，資料夾下需要有該題測資，該題目才會有此judge server，出題時題目測資會上傳到此資料夾
+使用 problem_storage_root 設定測資資料夾，建立資料夾 /home/domjudge/site/problems，資料夾下需要有該題測資，該題目才會有此 judge server，出題時題目測資會上傳到此資料夾
 ```
 id: pc2
 key: v{2$X`8Hk)dg.j&3vNo7ZzkN0c+.J9ZS!6>Nj0!*1.NtJOp^o%c;qUYvzb7:[TC-6aA_Zw#2%4<%-ybUe^tOc7/b9]X#-4g*5EsP
