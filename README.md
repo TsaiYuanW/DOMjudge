@@ -222,3 +222,9 @@ runtime:
 ```
 使用 Supervisor 啟動 Judge Server
 編輯 /etc/supervisor/conf.d/judge.conf
+
+```
+$ supervisorctl update
+$ supervisorctl restart all
+$ supervisorctl status
+```
