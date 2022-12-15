@@ -192,7 +192,7 @@ $ service nginx restart
  ```
  
 
-## 部屬 Judge server
+## Judge server 安裝
 ### Site-side setup
  登入DMOJ的管理者，點選「Submmissions -> Judge」，新增 Judge 主機的 Name 與產生 authentication key
  
