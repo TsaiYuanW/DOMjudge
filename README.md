@@ -95,7 +95,7 @@ $ . dmojsite/bin/activate
 (dmojsite) $ python3 manage.py createsuperuser
 ```
 ### Setting up Celery
-啟用redis
+啟用 redis
 ```
 (dmojsite) $ service redis-server start
 ```
@@ -136,7 +136,7 @@ $ apt install supervisor
 * https://github.com/DMOJ/docs/blob/master/sample_files/site.conf
 * https://github.com/DMOJ/docs/blob/master/sample_files/bridged.conf
 * https://github.com/DMOJ/docs/blob/master/sample_files/celery.conf
-記得更改設定檔內的檔案路徑，celery 的設定檔 user 和 group 設為 root
+記得更改設定檔內的檔案路徑，celery 的設定檔 user 和 group 設為 `root`
 ```
 $ supervisorctl update
 $ supervisorctl status
@@ -147,4 +147,39 @@ $ apt install nginx
 ```
 在 /etc/nginx/conf.d/ 下建立設定檔 nginx.conf
 * https://github.com/DMOJ/docs/blob/master/sample_files/nginx.conf
-host name 和 port 記得要更改
+
+<hostname> 和 port 記得要更改 `140.138.145.203` 和 `8080` port
+
+再來測試
+```
+$ nginx -t
+```
+
+啟動 nginx
+```
+$ service nginx start
+```
+使用瀏覽器打開 http:/140.138.145.203:8080 就可以看到 nginx 所啟動的 DOMjudge
+ 
+### Configuration of event server
+新增 /home/DOMjudge/site/websocket/config.js 如下
+```
+(dmojsite) $ cat > websocket/config.js
+module.exports = {
+    get_host: '127.0.0.1',
+    get_port: 15100,
+    post_host: '127.0.0.1',
+    post_port: 15101,
+    http_host: '127.0.0.1',
+    http_port: 15102,
+    long_poll_timeout: 29000,
+};
+```
+在 local_settings.py 的 EVENT_DAEMON_POST 、 EVENT_DAEMON_GET 與 EVENT_DAEMON_POLL 需設定，在前面 local_settings.py 中已經加上。
+
+再來安裝套件
+```
+(dmojsite) $ npm install qu ws simplesets
+(dmojsite) $ pip3 install websocket-client 
+```
+  
