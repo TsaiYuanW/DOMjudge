@@ -54,13 +54,97 @@ $ . dmojsite/bin/activate
 在虛擬環境下安裝 python3 所需套件
 ```
 (dmojsite) $ pip3 install -r requirements.txt
-(dmojsite) $ pip3 install mysqlclient
+(dmojsite) $ pip3 install mysqlclient websocket-client
 ```
-在 dmoj 資料夾下新增local_settings.py
+在 dmoj 資料夾下新增 local_settings.py
 
-下載自https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py，進行修改，如下，DMOJ的local_settings.py。
+自 https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py 進行修改
 
 檢查網站是否正常運作
 ```
 (dmojsite) $ python3 manage.py check
 ```
+### Compiling assets
+收集 static 檔案
+```
+(dmojsite) $ ./make_style.sh
+(dmojsite) $ python3 manage.py collectstatic
+```
+建立語言檔
+```
+(dmojsite) $ python3 manage.py compilemessages
+(dmojsite) $ python3 manage.py compilejsi18n
+```
+### Setting up database tables
+建立資料庫內的資料表
+```
+(dmojsite) $ python3 manage.py migrate
+```
+載入測試資料
+```
+(dmojsite) $ python3 manage.py loaddata navbar
+(dmojsite) $ python3 manage.py loaddata language_small
+(dmojsite) $ python3 manage.py loaddata demo
+```
+`Keep in mind that the demo fixture creates a superuser account with a username and password of admin.`
+
+`留意 demo 會產生 帳號 、 密碼為 admin 的使用者，記得之後要更改密碼`
+
+新增 Superuser 帳號
+```
+(dmojsite) $ python3 manage.py createsuperuser
+```
+### Setting up Celery
+啟用redis
+```
+(dmojsite) $ service redis-server start
+```
+Configure local_settings.py by uncommenting CELERY_BROKER_URL and CELERY_RESULT_BACKEND. 
+
+By default, Redis listens on localhost port 6379, which is reflected in local_settings.py. You will need to update the addresses if you changed Redis's settings.
+### Running the server
+在 dmoj/settings.py 的 ALLOWED_HOSTS 新增主機IP，如右，ALLOWED_HOSTS = ['140.138.145.203']
+```
+(dmojsite) $ python3 manage.py runserver 0.0.0.0:8000
+```
+到 http://140.138.145.203:8000 確認網站是否運行，能運行就按 Ctrl-C 離開
+```
+(dmojsite) $ python3 manage.py runbridged
+```
+啟用 Bridge，沒出現錯誤就 Ctrl+C 離開
+
+在 local_settings.py 取消註解 CELERY_BROKER_URL 與 CELERY_RESULT_BACKEND
+```
+(dmojsite) $ celery -A dmoj_celery worker
+```
+沒出現錯誤就 Ctrl+C 離開
+### Setting up uWSGI
+安裝 uwsgi
+```
+(dmojsite) $ pip3 install uwsgi
+```
+複製 https://github.com/DMOJ/docs/blob/master/sample_files/uwsgi.ini 的檔案，並更改網站檔案路徑，虛擬環境檔案路徑
+```
+(dmojsite) $ uwsgi --ini uwsgi.ini
+```
+出現 spawned 表示正常，使用 Ctrl+C 離開
+### Setting up supervisord
+```
+$ apt install supervisor
+```
+在 /etc/supervisor/conf.d/ 下建立設定檔 site.conf 、 bridged.conf 和 celery.conf
+* https://github.com/DMOJ/docs/blob/master/sample_files/site.conf
+* https://github.com/DMOJ/docs/blob/master/sample_files/bridged.conf
+* https://github.com/DMOJ/docs/blob/master/sample_files/celery.conf
+記得更改設定檔內的檔案路徑，celery 的設定檔 user 和 group 設為 root
+```
+$ supervisorctl update
+$ supervisorctl status
+```
+### Setting up nginx
+```
+$ apt install nginx
+```
+在 /etc/nginx/conf.d/ 下建立設定檔 nginx.conf
+* https://github.com/DMOJ/docs/blob/master/sample_files/nginx.conf
+host name 和 port 記得要更改
