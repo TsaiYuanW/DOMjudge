@@ -11,7 +11,7 @@
 * https://docs.dmoj.ca/#/judge/setting_up_a_judge
 * https://sites.google.com/site/zsgititit/home/freebsd/zaiubuntu-an-zhuangdmoj-judge-server
 
-## 網站安裝細項
+## 網站安裝
 ### Installing the prerequisites
 ```
 $ apt update
