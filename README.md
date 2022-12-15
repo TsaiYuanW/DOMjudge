@@ -11,7 +11,7 @@
 * https://docs.dmoj.ca/#/judge/setting_up_a_judge
 * https://sites.google.com/site/zsgititit/home/freebsd/zaiubuntu-an-zhuangdmoj-judge-server
 
-## 網站安裝
+## 網站安裝細項
 ### Installing the prerequisites
 ```
 $ apt update
@@ -38,4 +38,29 @@ mariadb> GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY '<ma
 mariadb> exit
 ```
 ### Installing prerequisites
-  
+建立與啟動 Python3 虛擬環境
+```
+$ python3 -m venv dmojsite
+$ . dmojsite/bin/activate  
+```
+下載程式與資源檔案
+```
+(dmojsite) $ git clone https://github.com/DMOJ/site.git
+(dmojsite) $ cd site
+(dmojsite) $ git checkout v1.4.0   # only if planning to install a judge from PyPI, otherwise skip this step
+(dmojsite) $ git submodule init
+(dmojsite) $ git submodule update
+```
+在虛擬環境下安裝 python3 所需套件
+```
+(dmojsite) $ pip3 install -r requirements.txt
+(dmojsite) $ pip3 install mysqlclient
+```
+在 dmoj 資料夾下新增local_settings.py
+
+下載自https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py，進行修改，如下，DMOJ的local_settings.py。
+
+檢查網站是否正常運作
+```
+(dmojsite) $ python3 manage.py check
+```
