@@ -1,0 +1,6 @@
+id: pc2
+key: v{2$X`8Hk)dg.j&3vNo7ZzkN0c+.J9ZS!6>Nj0!*1.NtJOp^o%c;qUYvzb7:[TC-6aA_Zw#2%4<%-ybUe^tOc7/b9]X#-4g*5EsP
+problem_storage_root:
+  - /home/domjudge/problems
+runtime:
+  g++14: /usr/bin/g++
