@@ -190,3 +190,9 @@ $ supervisorctl update
 $ supervisorctl restart all
 $ service nginx restart
  ```
+ 
+
+## 部屬 Judge server
+### Site-side setup
+ 登入DMOJ的管理者，點選「Submmissions -> Judge」，新增 Judge 主機的 Name 與產生 authentication key
+ ![GITHUB]( 圖片網址 "圖片名稱")
