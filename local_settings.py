@@ -326,7 +326,7 @@ LOGGING = {
 # Do try to keep it separate so you can quickly patch in new settings.
 
 REGISTRATION_OPEN = False
-MOSS_API_KEY = 115828111
+MOSS_API_KEY = <your moss key>
 DMOJ_SUBMISSION_SOURCE_VISIBILITY = 'only-own'
 DMOJ_PROBLEM_DATA_ROOT = '/home/domjudge/problems'
 DMOJ_PROBLEM_STATEMENT_DISALLOWED_CHARACTERS = {''}
