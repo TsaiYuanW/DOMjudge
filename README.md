@@ -5,11 +5,9 @@
 
 ## 網站安裝可以直接參考以下網址
 * https://docs.dmoj.ca/#/site/installation 
-* https://sites.google.com/site/zsgititit/home/freebsd/zaiubuntu-an-zhuang-xian-shang-jie-ti-xi-tongdmoj
 
 ## Judge 安裝可以直接參考以下網址
 * https://docs.dmoj.ca/#/judge/setting_up_a_judge
-* https://sites.google.com/site/zsgititit/home/freebsd/zaiubuntu-an-zhuangdmoj-judge-server
 
 ## 網站安裝
 ### Installing the prerequisites
